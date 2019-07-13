@@ -1,0 +1,13 @@
+[package]
+name = "dhb-heroku-postgres-client"
+license = "MIT OR Apache-2.0"
+version = "0.1.0-alpha.0"
+authors = ["dhbradshaw"]
+description = "Easily connect to heroku postgres."
+edition = "2018"
+
+[dependencies]
+dotenv = "0.13.0"
+openssl = "0.10"
+postgres = "0.16.0-rc.2"
+postgres-openssl = "0.2.0-rc.1"
