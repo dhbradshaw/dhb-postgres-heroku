@@ -16,15 +16,13 @@ pub use postgres;
 
 /// # Example:
 /// ```rust,no_run
-/// use dhb_heroku_postgres_client:postgres_client;
-///
 /// let database_url = "postgres://username:password@host:port/db_name";
-/// let mut client = postgres_client(&database_url);
+/// let mut client = dhb_postgres_heroku::get_client(&database_url);
 /// ```
 /// # Panics
 /// This will panic if it can't connect.  
 /// That could be because your database_url is wrong, because your database is down, because your internet connection is failing, etc.
-pub fn postgres_client(database_url: &str) -> Client {
+pub fn get_client(database_url: &str) -> Client {
     // Create Ssl postgres connector without verification as required to connect to Heroku.
     let mut builder = SslConnector::builder(SslMethod::tls()).unwrap();
     builder.set_verify(SslVerifyMode::NONE);
@@ -37,7 +35,13 @@ pub fn postgres_client(database_url: &str) -> Client {
     ).unwrap()
 }
 
-pub fn postgres_smoke_test(client: &mut Client) {
+/// # Example:
+/// ```rust,no_run
+/// let database_url = "postgres://username:password@host:port/db_name";
+/// let mut client = dhb_postgres_heroku::get_client(&database_url);
+/// dhb_postgres_heroku::smoke_test(&mut client);
+/// ```
+pub fn smoke_test(client: &mut Client) {
     // 1. Create table. 
     client.simple_query("
         CREATE TABLE IF NOT EXISTS person_nonconflicting (
