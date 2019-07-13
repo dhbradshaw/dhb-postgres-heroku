@@ -1,7 +1,12 @@
 //! # dhb-heroku-postgres-client
 //! Given a DATABASE_URL, it should be dead simple to connect to a Heroku postgres database.
+//! 
 //! This crate makes it dead simple:
-//! You pass a DATABASE_URL to the postgres_client function and get a working client back.
+//!
+//! You pass a DATABASE_URL to the postgres_client function and get a working client back, as in
+//! ```rust,no_run
+//! let mut client = get_client(&database_url);
+//! ```
 //! 
 //! The reason I found the work to create this crate necessary is that connecting to Heroku has 2 quirks.
 //! 1. On the one hand, it requires that we have a secure connection.
