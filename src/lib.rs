@@ -10,7 +10,7 @@
 //! 
 //! The reason I found the work to create this crate necessary is that connecting to Heroku has 2 quirks.
 //! 1. On the one hand, it requires that we have a secure connection.
-//! 2. On the other hand, it uses self-verified certificates.  So we have to enable Ssl, but turn off verification.  
+//! 2. On the other hand, it uses self-verified certificates.  So we have to enable ssl, but turn off verification.  
 
 // postgres connection
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
@@ -19,6 +19,8 @@ use postgres_openssl::MakeTlsConnector;
 
 pub use postgres;
 
+/// Get a working client from a postgres url.
+///
 /// # Example:
 /// ```rust,no_run
 /// let database_url = "postgres://username:password@host:port/db_name";
@@ -40,6 +42,8 @@ pub fn get_client(database_url: &str) -> Client {
     ).unwrap()
 }
 
+/// Try out a client by running through a set of postgres commands to create a table, insert a row, read the row, and drop the table.
+/// 
 /// # Example:
 /// ```rust,no_run
 /// let database_url = "postgres://username:password@host:port/db_name";
