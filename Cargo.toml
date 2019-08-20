@@ -1,7 +1,7 @@
 [package]
 name = "dhb-postgres-heroku"
 license = "MIT OR Apache-2.0"
-version = "0.1.0-alpha.2"
+version = "0.1.0-alpha.3"
 authors = ["dhbradshaw"]
 description = "Easily connect to heroku postgres."
 edition = "2018"

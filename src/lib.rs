@@ -117,3 +117,12 @@ pub fn get_pool(database_url: &str, max_size: u32) ->  HerokuPool {
         .build(manager)
         .unwrap()
 }
+
+
+/// This type is defined so that you can pass around a connection after obtaining it from a connection pool.
+pub type HerokuPooledConnection = r2d2::PooledConnection<r2d2_postgres::PostgresConnectionManager<postgres_openssl::MakeTlsConnector>>;
+
+/// This function demonstrates how to get a HerokuPooledConnection from a HerokuPool.
+pub fn get_connection(pool: HerokuPool) -> HerokuPooledConnection {
+    pool.get().unwrap()
+}
